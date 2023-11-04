@@ -1,11 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) to show how React Servver Components work in the new Next.js 13 App router.
+This is a [Next.js](https://nextjs.org/) project bootstrapped with
+[`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
+to show how React Servver Components work in the new Next.js 13 App router.
 
 ## Usage
 
-First, install [JSON Server](https://www.npmjs.com/package/json-server) with the following command:
+First, install [JSON Server](https://www.npmjs.com/package/json-server) with the
+following command:
 
 ```bash
-npm install -g json-server
+npm install -D json-server
 
 ```
 
@@ -24,4 +27,5 @@ Start the development server with the following command:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the
+result.
