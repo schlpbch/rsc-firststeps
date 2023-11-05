@@ -1,15 +1,14 @@
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@/types/supabase";
-import { cookies } from "next/headers";
 
 import VideoCard from "./VideoCard";
 
 export interface Video {
-  id: string;
+  id: number;
   image: string;
   title: string;
-  views: string;
-  published: string;
+  views: number;
+  published?: string;
 }
 
 async function fetchVideos2(): Promise<Video[]> {
@@ -29,7 +28,7 @@ async function fetchVideosREST(): Promise<Video[]> {
   return videos;
 }
 
-async function fetchVideosSupabase() {
+async function fetchVideosSupabase(): Promise<Video[]> {
   const supabase = createClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ""
@@ -37,14 +36,14 @@ async function fetchVideosSupabase() {
 
   const { data: tutorial, error } = await supabase
     .from("Tutorial")
-    .select("*")
+    .select("id, image, title, views, published")
     .order("views", { ascending: false });
   if (error) {
     console.log("error", error);
   } else {
     console.log("data", tutorial);
   }
-  return tutorial;
+  return tutorial ?? [];
 }
 
 export default async function VideoSection() {

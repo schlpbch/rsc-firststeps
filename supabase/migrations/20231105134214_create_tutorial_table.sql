@@ -5,6 +5,6 @@ create table
     image text not null default ''::text,
     title text not null,
     views bigint not null default '0'::bigint,
-    published text null,
+    published text not null,
     constraint Tutorial_pkey primary key (id)
   ) tablespace pg_default;

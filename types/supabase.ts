@@ -39,7 +39,7 @@ export interface Database {
           created_at: string
           id: number
           image: string
-          published: string | null
+          published: string
           title: string
           views: number
         }
@@ -47,7 +47,7 @@ export interface Database {
           created_at?: string
           id?: number
           image?: string
-          published?: string | null
+          published: string
           title: string
           views?: number
         }
@@ -55,7 +55,7 @@ export interface Database {
           created_at?: string
           id?: number
           image?: string
-          published?: string | null
+          published?: string
           title?: string
           views?: number
         }
