@@ -1,3 +1,7 @@
+import { createClient } from "@supabase/supabase-js";
+import { Database } from "@/types/supabase";
+import { cookies } from "next/headers";
+
 import VideoCard from "./VideoCard";
 
 export interface Video {
@@ -8,7 +12,7 @@ export interface Video {
   published: string;
 }
 
-async function fetchVideos(): Promise<Video[]> {
+async function fetchVideos2(): Promise<Video[]> {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   const videos = await fetch("http://localhost:4000/tutorials").then((res) =>
     res.json()
@@ -16,8 +20,35 @@ async function fetchVideos(): Promise<Video[]> {
   return videos;
 }
 
+async function fetchVideosREST(): Promise<Video[]> {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  const videos = await fetch(
+    "http://127.0.0.1:54321/rest/v1/Tutorial?select=*"
+  ).then((res) => res.json());
+  console.log(videos);
+  return videos;
+}
+
+async function fetchVideosSupabase() {
+  const supabase = createClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ""
+  );
+
+  const { data: tutorial, error } = await supabase
+    .from("Tutorial")
+    .select("*")
+    .order("views", { ascending: false });
+  if (error) {
+    console.log("error", error);
+  } else {
+    console.log("data", tutorial);
+  }
+  return tutorial;
+}
+
 export default async function VideoSection() {
-  const videos: Video[] = await fetchVideos();
+  const videos = await fetchVideosSupabase();
   return (
     <section>
       {videos.map((video) => (

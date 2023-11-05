@@ -30,9 +30,9 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 result.
 
-## Adding supabase
+## Adding supabase locally
 
 ```bash
-npx supabase gen types typescript --project-id hkhirxyrfgrutzzjiznd
+npx supabase init
+npy supabase start
  ```
- 
