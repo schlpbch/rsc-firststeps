@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Video } from "./page";
+import { Video } from "./VideoSection";
 
 export default async function VideoCard(video: Video) {
   return (
