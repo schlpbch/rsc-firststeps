@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { Video } from "./VideoSection";
+import Link from "next/link";
 
 export default async function VideoCard(video: Video) {
   return (
-    <a
+    <Link
       href={`https://www.youtube.com/watch?v=${video.id}`}
       target="_blank"
       rel="noopener noreferrer"
@@ -20,6 +21,6 @@ export default async function VideoCard(video: Video) {
       <div className="font-light text-sm">
         {video.views} &bull; {video.published}
       </div>
-    </a>
+    </Link>
   );
 }
