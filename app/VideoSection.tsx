@@ -11,7 +11,7 @@ export interface Video {
   published?: string;
 }
 
-async function fetchVideos2(): Promise<Video[]> {
+async function fetchVideosJsonServer(): Promise<Video[]> {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   const videos = await fetch("http://localhost:4000/tutorials").then((res) =>
     res.json()
@@ -20,9 +20,8 @@ async function fetchVideos2(): Promise<Video[]> {
 }
 
 async function fetchVideosREST(): Promise<Video[]> {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  const videos = await fetch(
-    "http://127.0.0.1:54321/rest/v1/Tutorial?select=*"
+   const videos = await fetch(
+    "http://127.0.0.1:54321/rest/v1/Tutorial?select=id,image,title,views,published&order=views.desc"
   ).then((res) => res.json());
   console.log(videos);
   return videos;
@@ -37,6 +36,7 @@ async function fetchVideosSupabase(): Promise<Video[]> {
   const { data: tutorial, error } = await supabase
     .from("Tutorial")
     .select("id, image, title, views, published")
+    .filter("id", "gt", 0) // strange
     .order("views", { ascending: false });
   if (error) {
     console.log("error", error);
