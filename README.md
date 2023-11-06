@@ -55,7 +55,7 @@ Dump data from supabase:
 
 ### GraphQL with Supabase
 
-Querying all tutorials data with graphql:
+Querying all tutorials with graphql:
 
 ```graphql
 {
@@ -70,7 +70,7 @@ Querying all tutorials data with graphql:
 }
 ```
 
-Querying tutorials data with graphql:
+Querying tutorial 10 with graphql:
 
 ```graphql
 {
