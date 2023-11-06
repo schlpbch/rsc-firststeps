@@ -1,7 +1,5 @@
-import { createClient } from "@supabase/supabase-js";
-import { Database } from "@/types/supabase";
-
 import VideoCard from "./VideoCard";
+import { supabase } from '@/lib/initSupabase'
 
 export interface Video {
   id: number;
@@ -28,15 +26,11 @@ async function fetchVideosREST(): Promise<Video[]> {
 }
 
 async function fetchVideosSupabase(): Promise<Video[]> {
-  const supabase = createClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ""
-  );
 
   const { data: tutorial, error } = await supabase
     .from("Tutorial")
     .select("id, image, title, views, published")
-    .filter("id", "gt", 0) // strange
+    .filter("id", "gt", 1) // strange
     .order("views", { ascending: false });
   if (error) {
     console.log("error", error);
