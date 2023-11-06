@@ -1,8 +1,8 @@
 import VideoCard from "./VideoCard";
-import { supabase } from '@/lib/initSupabase'
+import { supabase } from "@/lib/initSupabase";
 
 export interface Video {
-  id: number;
+  youtube_id: string;
   image: string;
   title: string;
   views: number;
@@ -18,19 +18,17 @@ async function fetchVideosJsonServer(): Promise<Video[]> {
 }
 
 async function fetchVideosREST(): Promise<Video[]> {
-   const videos = await fetch(
-    "http://127.0.0.1:54321/rest/v1/Tutorial?select=id,image,title,views,published&order=views.desc"
+  const videos = await fetch(
+    "http://127.0.0.1:54321/rest/v1/Tutorial?select=youtube_id,image,title,views,published&order=views.desc"
   ).then((res) => res.json());
   console.log(videos);
   return videos;
 }
 
 async function fetchVideosSupabase(): Promise<Video[]> {
-
   const { data: tutorial, error } = await supabase
     .from("Tutorial")
-    .select("id, image, title, views, published")
-    .filter("id", "gt", 1) // strange
+    .select("youtube_id, image, title, views, published")
     .order("views", { ascending: false });
   if (error) {
     console.log("error", error);
@@ -45,7 +43,7 @@ export default async function VideoSection() {
   return (
     <section>
       {videos.map((video) => (
-        <li className="mb-6 list-none" key={video.id}>
+        <li className="mb-6 list-none" key={video.youtube_id}>
           <VideoCard {...video} />
         </li>
       ))}

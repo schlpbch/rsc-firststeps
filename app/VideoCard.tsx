@@ -5,7 +5,7 @@ import Link from "next/link";
 export default async function VideoCard(video: Video) {
   return (
     <Link
-      href={`https://www.youtube.com/watch?v=${video.id}`}
+      href={`https://www.youtube.com/watch?v=${video.youtube_id}`}
       target="_blank"
       rel="noopener noreferrer"
       className="hover:opacity-80"

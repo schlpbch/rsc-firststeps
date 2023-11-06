@@ -42,6 +42,7 @@ export interface Database {
           published: string
           title: string
           views: number
+          youtube_id: string
         }
         Insert: {
           created_at?: string
@@ -50,6 +51,7 @@ export interface Database {
           published: string
           title: string
           views?: number
+          youtube_id: string
         }
         Update: {
           created_at?: string
@@ -58,6 +60,7 @@ export interface Database {
           published?: string
           title?: string
           views?: number
+          youtube_id?: string
         }
         Relationships: []
       }

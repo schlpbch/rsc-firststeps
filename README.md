@@ -1,6 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with
-[`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
-to show how React Servver Components work in the new Next.js 13 App router.
+# React Server Components and Supabase
 
 ## Usage
 
@@ -32,7 +30,23 @@ result.
 
 ## Adding supabase locally
 
+Getting started with supabase locally:
+
 ```bash
 npx supabase init
 npy supabase start
- ```
+```
+
+Generate typescript types from supabase:
+
+```bash
+npx supabase gen types typescript --local > lib/schema.ts
+```
+
+Dump data from supabase:
+
+```bash
+ npx supabase db dump --local -f supabase/roles.sql --role-only
+ npx supabase db dump --local -f supabase/schema.sql
+ npx supabase db dump --local -f supabase/data.sql --use-copy --data-only
+```
