@@ -1,5 +1,7 @@
 # React Server Components and Supabase
 
+[![Made with Supabase](https://supabase.com/badge-made-with-supabase.svg)](https://supabase.com)
+
 ## Usage
 
 First, install [JSON Server](https://www.npmjs.com/package/json-server) with the
@@ -49,4 +51,46 @@ Dump data from supabase:
  npx supabase db dump --local -f supabase/roles.sql --role-only
  npx supabase db dump --local -f supabase/schema.sql
  npx supabase db dump --local -f supabase/data.sql --use-copy --data-only
+```
+
+### GraphQL with Supabase
+
+Querying all tutorials data with graphql:
+
+```graphql
+{
+  tutorialCollection(first: 10) {
+    edges {
+      node {
+        title
+        views
+      }
+    }
+  }
+}
+```
+
+Querying tutorials data with graphql:
+
+```graphql
+{
+  tutorialCollection(filter: { id: { eq: 10 } }) {
+    edges {
+      node {
+        id
+        title
+        views
+      }
+    }
+  }
+}
+```
+
+### PSQL with Supabase
+
+```bash
+schlpbch@Courier:~/code/rsc-firststeps$ psql 'postgresql://postgres:postgres@localhost:54322/postgres'
+psql (15.4 (Ubuntu 15.4-1ubuntu1), server 15.1 (Ubuntu 15.1-1.pgdg20.04+1))
+Type "help" for help.
+postgres=> select title from tutorial;
 ```
